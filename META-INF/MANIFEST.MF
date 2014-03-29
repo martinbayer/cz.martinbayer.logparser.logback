@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Logback
+Bundle-SymbolicName: cz.martinbayer.logparser.logback
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: cz.martinbayer.logparser.logback.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: cz.martinbayer.logparser.fileshandler,
+ cz.martinbayer.logparser.logic,
+ org.osgi.framework;version="1.3.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: cz.martinbayer.logparser.logback.handler,
+ cz.martinbayer.logparser.logback.pattern,
+ cz.martinbayer.logparser.logback.pattern.model
