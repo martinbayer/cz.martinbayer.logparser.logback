@@ -17,7 +17,6 @@ public class LogbackReader extends LogFileReceiver {
 	private String logbackConfigPattern;
 	private Pattern parsedPattern;
 	private ConfigPatternInfo info;
-	private StringBuffer buffer = new StringBuffer();
 	private Pattern splitPattern;
 
 	public LogbackReader(LogFileSemaphoreWatchedStore semaphore,

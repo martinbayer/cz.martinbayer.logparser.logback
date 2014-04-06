@@ -19,6 +19,7 @@ public class LogBackHandler {
 	private String encoding = "UTF-8";
 	private LogFileReader logFileReader;
 	private LogbackReader logbackReceiver;
+	private LogFileSemaphoreWatchedStore semaphore;
 
 	private LogBackHandler(File[] filesToParse, String logbackConfigPattern,
 			String encoding) {
@@ -27,8 +28,7 @@ public class LogBackHandler {
 		if (encoding != null) {
 			this.encoding = encoding;
 		}
-		LogFileSemaphoreWatchedStore semaphore = new LogFileSemaphoreWatchedStore(
-				5);
+		semaphore = new LogFileSemaphoreWatchedStore(5);
 		logFileReader = new LogFileReader(semaphore, this.filesToParse,
 				this.encoding);
 		logbackReceiver = new LogbackReader(semaphore,
@@ -51,6 +51,7 @@ public class LogBackHandler {
 	 * @param listener
 	 */
 	public synchronized void doParse(ILogParserListener listener) {
+		semaphore.reset();
 		logbackReceiver.setListener(listener);
 		Thread fileReadThread = new Thread(logFileReader);
 		Thread logbackReceiverThread = new Thread(logbackReceiver);
